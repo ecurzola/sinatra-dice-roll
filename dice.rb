@@ -1,8 +1,18 @@
 require "sinatra"
 require "sinatra/reloader"
+require "better_errors"
+require "binding_of_caller"
+use(BetterErrors::Middleware)
+BetterErrors.application_root = __dir__
+BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
 
 get("/") do
-  "Hello World"
+  "<h1>Dice Roll</h1>
+  <p>Roll two 6-sided dice</p>
+  <p>Roll two 10-sided dice</p>
+  <p>Roll two 20-sided dice</p>
+  <p>Roll five 4-sided dice</p>
+  " 
 end
 
 get("/zebra") do
